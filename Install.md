@@ -2,21 +2,27 @@
 
 [GONEList](https://github.com/cugxuan/gonelist) 是由 `golang+vue` 编写的基于 onedrive 的在线网盘，有着跨平台等特性，搭建简单。本次搭建使用的是系统是 `64 位 Ubuntu 18.04`，Linux 系统一般都可以兼容对应的操作
 
-可点击目录跳转
+{% note warning %}
+
 - [下载已编译的程序](#下载已编译的程序)
 - [创建 MicroSoft 应用](#创建-MicroSoft-应用)
 - [修改配置信息](#修改配置信息)
 - [启动和终止应用](#启动和终止应用)
 - [HTTPS](#HTTPS)
 
+{% endnote %}
+
 # 下载已编译的程序
 
-在 [Github-Release](https://github.com/cugxuan/gonelist/releases) 下载平台对应的二进制文件，并且解压进入
+在 [Github-Release](https://github.com/cugxuan/gonelist/releases) 或者 [gonelist-release](https://gonelist.cugxuan.cn/#/gonelist-release) 下载您使用平台对应的二进制文件，并且解压进入
 
 ```
-$ wget https://github.com/cugxuan/gonelist/releases/download/v0.1/gonelist_linux_amd64.tar.gz
-$ tar -zxf gonelist_linux_amd64.tar.gz
-$ cd gonelist_linux_amd64/
+// 下载 Linux 版
+$ wget https://gonelist.cugxuan.cn/d/gonelist-release/gonelist_linux_amd64.tar.gz
+// 下载 github release 也可以，但下载最新版
+$ wget https://github.com/cugxuan/gonelist/releases/download/v0.2/gonelist_linux_amd64.tar.gz
+// 解压进入文件夹
+$ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
 
 # 创建 MicroSoft 应用
@@ -66,7 +72,7 @@ $ cd gonelist_linux_amd64/
     "port": 8000,
     // 自动刷新的时间单位是分钟，默认 10 分钟，不要超过 1 小时
     "refresh_time": 10,
-    // 登陆成功后，跳转的 URL，可不设置
+    // 登陆成功后，跳转的 URL，可不设置，新版已自动跳转
     "site_url": "http://localhost:8000",
     // 自定义 onedrive 的子文件夹
     "folder_sub": "/"
@@ -96,11 +102,11 @@ $ kill 21020
 ![allow-auth](./img/install/allow-auth.png)
 
 如果是在本地部署，登陆成功会跳转到首页，此时已经完成部署。
-如果是在服务器部署，登陆成功会跳转到`http://localhost:8000/auth?code=xxx`，将当前网址改成 `http://yoursite:8000/auth?code=xxx` 再回车访问即可，登陆成功又会重定向到 `http://localhost:8000`，此时就可以访问你的网站 `http://yoursite:8000`
+如果是在服务器部署，登陆成功会跳转到`http://localhost:8000/auth?code=xxx`，将当前网址改成 `http://yoursite:8000/auth?code=xxx` 再回车等待文件加载后，会自动跳转你的网站 `http://yoursite:8000`
 
 # HTTPS
 
-如果你的域名申请了 HTTPS 证书，可以通过 nginx 反向代理。此时注意 `config.json` 中的 `bind_global` 设置为 `false`（作用就是不会让外部通过 http 访问），然后修改 nginx 设置，以我的 `https://gonelist.cugxuan.cn`，腾讯云的免费证书为例
+如果你的域名申请了 HTTPS 证书，可以通过 nginx 反向代理。**建议将** `config.json` 中的 `bind_global` 设置为 `false`（作用就是不会让外部通过 http 访问），然后修改 nginx 设置，以我的 `https://gonelist.cugxuan.cn`，腾讯云的免费证书为例
 
 ```
 $ cd /etc/nginx/sites-enabled
