@@ -27,12 +27,12 @@ $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 
 # 创建 MicroSoft 应用
 
-如果您的 **整个网盘以及微软账号** 里面没有任何隐私资料，可以直接使用我们的默认 `client_id` 和 `client_secret`，直接跳转到 [修改配置信息](#修改配置信息)，否则请申请自己单独的应用来**保护您的隐私安全**。
+如果您的 **整个网盘以及微软账号** 里面没有任何隐私资料，可以直接使用我们的默认 `client_id` 和 `client_secret`（解压后 `config.json` 自带默认设置），直接跳转到 [修改配置信息](#修改配置信息)，否则请申请自己单独的应用来**保护您的隐私安全**。
 （注：您可以通过 [你已授予访问权限的应用和服务](https://account.live.com/consent/Manage) 来管理自己许可的应用）
 
 ## 注册应用程序
 
-打开 [注册应用程序](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) 的链接，登陆后选择「注册应用程序」，输入「名称」，选择「任何组织目录中的账户和个人」，输入重定向 URL 为 `http://localhost:8000/auth`，「注册」即可
+打开 [注册应用程序](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) 的链接，登陆后选择「注册应用程序」，输入「名称」，选择「任何组织目录中的账户和个人」（**注意这里不要选成单一租户或者其他选项，否则会导致登陆时出现问题**），输入重定向 URL 为 `http://localhost:8000/auth`，「注册」即可
 
 ![register-app](./img/install/register-app.png)
 
