@@ -137,7 +137,7 @@ server {
     listen 443;
 
     server_name gonelist.cugxuan.cn; #填写绑定证书的域名
-    // 这一部分都是腾讯云的配置说明抄下来改路径
+    # 这一部分都是腾讯云的配置说明抄下来改路径，不同服务商请查询各家文档
     ssl on;
     ssl_certificate tecent-ssl/gonelist.cugxuan.cn/Nginx/1_gonelist.cugxuan.cn_bundle.crt;
     ssl_certificate_key tecent-ssl/gonelist.cugxuan.cn/Nginx/2_gonelist.cugxuan.cn.key;
