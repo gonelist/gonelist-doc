@@ -101,7 +101,7 @@ $ kill 21020
 
 ![allow-auth](./img/install/allow-auth.png)
 
-如果是在本地部署，登陆成功会跳转到首页，此时已经完成部署。
+如果是在本地部署，登陆成功会跳转到首页，此时已经完成部署。如果登陆后一直没有反应，可能是因为文件夹数量过多导致，建议设置「子文件夹」选项
 如果是在服务器部署，登陆成功会跳转到`http://localhost:8000/auth?code=xxx`，将当前网址改成 `http://yoursite:8000/auth?code=xxx` 再回车等待文件加载后，会自动跳转你的网站 `http://yoursite:8000`
 
 # HTTPS
