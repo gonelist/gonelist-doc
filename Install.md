@@ -17,8 +17,10 @@
 在 [Github-Release](https://github.com/cugxuan/gonelist/releases) 或者 [gonelist-release](https://gonelist.cugxuan.cn/#/gonelist-release) 下载您使用平台对应的二进制文件，并且解压进入
 
 ```
-// 请下载 release 最新版
-$ wget https://github.com/cugxuan/gonelist/releases/download/v0.2/gonelist_linux_amd64.tar.gz
+// 下载对应的安装包，也可下载 gonelist-release 中的包
+$ wget https://github.com/cugxuan/gonelist/releases/download/v0.3/gonelist_linux_amd64.tar.gz
+// 如果速度过慢，可以使用 CDN 链接下载
+$ wget http://g.cugxuan.cn/v0.3/gonelist_linux_amd64.tar.gz
 // 解压进入文件夹
 $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
