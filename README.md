@@ -1,6 +1,6 @@
 # GONEList-doc
 
-<img align="right" width="240" src="./doc/img/logo/logo.png">
+<img align="right" width="240" src="./img/logo/logo.png">
 
 这是一款使用 `golang + vue` 编写的基于 onedrive 的**在线共享网盘**  
 效果展示：https://gonelist.cugxuan.cn  
