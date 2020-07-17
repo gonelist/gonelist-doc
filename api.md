@@ -16,13 +16,12 @@
 
 具体错误根据返回内容中的 code 判断，对应的 code 和错误对照表
 
-## 登陆部分
+# 登陆部分
 
 - `GET /login`
+  登陆接口，访问时判断是否已经登录
 
-登陆接口，访问时判断是否已经登录
-
-- 如果已经登录，跳转到 `/onedrive/getallfiles` - 如果没有登陆，跳转到 `/loginmg`
+  - 如果已经登录，跳转到 `/onedrive/getallfiles` - 如果没有登陆，跳转到 `/loginmg`
 
 - GET `/loginmg`
   跳转到微软登陆验证页面
@@ -30,7 +29,7 @@
 - GET `/auth`
   用来接收 code，接收后会请求 AccessToken，初始化自动刷新
 
-- GET /onedrive/getallfiles
+- GET `/onedrive/getallfiles`
   获取所有文件的树结构，返回 data 字段结构如下
 
 ```json
@@ -51,30 +50,12 @@
 }
 ```
 
-# 判断权限接口
-
-首先判断路径是否密码正确，如果密码错误，返回
-
-```json
-{
-  "code": 10007,
-  "msg": "输入密码错误",
-  "data": "输入密码错误"
-}
-```
-
-## 获取路径接口
+## 获取某个文件夹内容 getpath
 
 - GET `/onedrive/getpath?path=xxx`
   通过相对路径获取文件列表，和 `/onedrive/getallfiles` 返回一样
   文件夹可以通过 `download_url`是否有值来判断是否需要访问 README 接口
-  对于文件夹和子文件夹使用同样的密码，通过 header 里面 pass 来传值，访问格式如下
-
-```http
-GET /onedrive/getpath?path=/exampleType HTTP/1.1
-Host: gonelist.cugxuan.cn
-pass: 123456
-```
+  需要 pass，[密码验证](#密码验证)
 
 接到返回内容如下
 
@@ -146,14 +127,51 @@ pass: 123456
 }
 ```
 
-- GET `/README?path=xxx`
+## 获取 README
 
-获取 README 的内容，如果改目录有密码，同样无法获取，获取示例如下
+- GET `/README?path=xxx`
+  获取 README 的内容，如果改目录有密码，同样无法获取，获取示例如下
+  需要 pass，[密码验证](#密码验证)
 
 ```json
 {
-    "code": 200,
-    "msg": "ok",
-    "data": "<h1>exampleType</h1>\n\n<p>这里是一些测试的文件夹</p>\n\n<p>你可以在每个文件夹里面定义对应的 README.md 文件</p>\n\n<p>按照 markdown 语法编写即可，可以直接进行浏览</p>\n"
+  "code": 200,
+  "msg": "ok",
+  "data": "<h1>exampleType</h1>\n\n<p>这里是一些测试的文件夹</p>\n\n<p>你可以在每个文件夹里面定义对应的 README.md 文件</p>\n\n<p>按照 markdown 语法编写即可，可以直接进行浏览</p>\n"
+}
+```
+
+## 下载文件
+
+- GET `/d/*path`
+  获取 path 的内容，如果要下载 xxx/.password，返回
+
+```
+{
+    "code": 10008,
+    "msg": ".password 文件禁止下载",
+    "data": ".password 文件禁止下载"
+}
+```
+
+否则会重定向到下载链接
+
+# 密码验证
+
+如果使用接口获取的文件夹设置了密码，通过 header 里面 pass 来传值，访问格式如下
+
+```http
+GET /onedrive/getpath?path=/exampleType HTTP/1.1
+Host: gonelist.cugxuan.cn
+pass: 123456
+```
+
+如果密码错误，返回
+
+```json
+{
+  "code": 10007,
+  "msg": "输入密码错误",
+  "data": "输入密码错误"
 }
 ```
