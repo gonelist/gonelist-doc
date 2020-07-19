@@ -18,9 +18,7 @@
 
 ```
 // 下载对应的安装包，也可下载 gonelist-release 中的包
-$ wget https://github.com/cugxuan/gonelist/releases/download/v0.3/gonelist_linux_amd64.tar.gz
-// 如果速度过慢，可以使用 CDN 链接下载
-$ wget http://g.cugxuan.cn/v0.3/gonelist_linux_amd64.tar.gz
+$ wget https://github.com/cugxuan/gonelist/releases/download/v0.4/gonelist_linux_amd64.tar.gz
 // 解压进入文件夹
 $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
