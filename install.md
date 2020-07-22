@@ -14,11 +14,11 @@
 
 # 下载已编译的程序
 
-在 [Github-Release](https://github.com/cugxuan/gonelist/releases) 或者 [gonelist-release](https://gonelist.cugxuan.cn/#/gonelist-release) 下载您使用平台对应的二进制文件，并且解压进入
+在 [Github-Release](https://github.com/cugxuan/gonelist/releases) 或者 [gonelist-release](https://gonelist.cugxuan.cn/#/gonelist-release) 中对应的包，Linux 系统下载 gonelist_linux_amd64.tar.gz，直接运行即可启动，以 Linux 系统本地启动为例
 
 ```
-// 下载对应的安装包，也可下载 gonelist-release 中的包
-$ wget https://github.com/cugxuan/gonelist/releases/download/v0.4/gonelist_linux_amd64.tar.gz
+// 下载对应的安装包，也可下载 gonelist-release 中的包，下面命令不一定是最新版本
+$ wget https://github.com/cugxuan/gonelist/releases/download/v0.4.1/gonelist_linux_amd64.tar.gz
 // 解压进入文件夹
 $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
@@ -114,6 +114,7 @@ $ vi gonelist.cugxuan.cn
 ```
 
 在 nginx 配置文件中写入下面内容，然后 `$ nginx` 启动或 `$ nginx -s reload` 重启即可
+
 ```
 server {
     listen       80;
