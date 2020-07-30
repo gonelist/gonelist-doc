@@ -9,6 +9,7 @@
 - 其他说明
   - [常见问题](question)
   - [目标愿景](goal)
+  - [致谢](thank)
 - 开发文档
   - [api](api)
   - [code](code)
