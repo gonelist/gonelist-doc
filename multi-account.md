@@ -2,7 +2,7 @@
 
 当前单应用不支持多用户，可以进行多应用部署，思路如图
 
-![multi](./img/multi-account/multi.png)
+![multi](./img/multi-account/multi.png ':size=70%')
 
 在下载之后一个压缩文件，解压两个文件夹
 
