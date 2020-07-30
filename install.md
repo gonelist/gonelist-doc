@@ -23,6 +23,8 @@ $ wget https://github.com/cugxuan/gonelist/releases/download/v0.4.1/gonelist_lin
 $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
 
+如果你是更新，那么请先删除原本的压缩包
+
 # 创建 MicroSoft 应用
 
 如果您的 **整个网盘以及微软账号** 里面没有任何隐私资料，可以直接使用我们的默认 `client_id` 和 `client_secret`（解压后 `config.json` 自带默认设置），直接跳转到 [修改配置信息](#修改配置信息)，否则请申请自己单独的应用来**保护您的隐私安全**。
@@ -60,11 +62,16 @@ $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 ```
 {
   //------建议填入自己的 id 和 secret --------
-  "client_id": "88966400-cb81-49cb-89c2-6d09f0a3d9e2",
+  "client_id": "16e320f7-e427-4612-88da-f3d03e944d40",
+  "client_secret": "lURpL3U@bBlmJ0:_dnU.LeLOGNGdVT30",
   "redirect_url": "http://localhost:8000/auth",
-  "client_secret": "/FKad]FPtKNk-=j11aPwEOBSxYUYUU54",
-  // 建议设置一个自己喜欢的字符串
+  // 设置一个自己喜欢的字符串
   "state": "23333",
+  "china_cloud": false,
+  // token 的路径，推荐默认
+  "token_path": "",
+  // 下载链接重定向前缀
+  "download_redirect_prefix": "",
   "server": {
     // 监听的端口
     "port": 8000,
@@ -78,7 +85,14 @@ $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
     "dist_path": "./dist/",
     // 是否绑定到 0.0.0.0
     "bind_global": true
-  }
+  },
+  // 给文件夹设置密码，相比此方法，更加建议直接在文件夹下的创建 .password 设置密码
+  "pass_list": [
+    {
+      "path": "",
+      "pass": ""
+    }
+  ]
 }
 ```
 
@@ -87,13 +101,15 @@ $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 现在就可以直接启动应用了
 
 ```
-// 启动应用
+// 启动应用，建议先启动，成功部署之后使用后台运行
+// 在命令行 ctrl+c 可以停止运行
 $ ./gonelist_linux_amd64
 // 后台运行应用
 $ nohup ./gonelist_linux_amd64 >nohup.log 2>&1 &
-// 结束后台应用
+// 结束后台应用，首先需要找出进程号，输出里面的第二列
 $ ps -ef | grep go
 root     21020 20947  0 20:08 pts/3    00:00:00 ./gonelist_linux_amd64
+// kill + 进程号停止 gonelist 进程
 $ kill 21020
 ```
 
@@ -103,54 +119,3 @@ $ kill 21020
 
 如果是在本地部署，登陆成功会跳转到首页，此时已经完成部署。如果登陆后一直没有反应，可能是因为文件夹数量过多导致，建议设置「子文件夹」选项
 如果是在服务器部署，登陆成功会跳转到`http://localhost:8000/auth?code=xxx`，将当前网址改成 `http://yoursite:8000/auth?code=xxx` 再回车等待文件加载后，会自动跳转你的网站 `http://yoursite:8000`
-
-# HTTPS
-
-如果你的域名申请了 HTTPS 证书，可以通过 nginx 反向代理。**建议将** `config.json` 中的 `bind_global` 设置为 `false`（作用就是不会让外部通过 http 访问），然后修改 nginx 设置，以我的 `https://gonelist.cugxuan.cn`，腾讯云的免费证书为例
-
-```
-$ cd /etc/nginx/sites-enabled
-$ vi gonelist.cugxuan.cn
-```
-
-在 nginx 配置文件中写入下面内容，然后 `$ nginx` 启动或 `$ nginx -s reload` 重启即可
-
-```
-server {
-    listen       80;
-    server_name  gonelist.cugxuan.cn;
-
-    # 强制跳转 HTTPS
-    rewrite ^(.*) https://$server_name$1 permanent;
-
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   html;
-    }
-}
-
-# 监听接口接口
-upstream gonelist_pool {
-    server 127.0.0.1:8000;
-}
-
-server {
-    listen 443;
-
-    server_name gonelist.cugxuan.cn; #填写绑定证书的域名
-    # 这一部分都是腾讯云的配置说明抄下来改路径，不同服务商请查询各家文档
-    ssl on;
-    ssl_certificate tecent-ssl/gonelist.cugxuan.cn/Nginx/1_gonelist.cugxuan.cn_bundle.crt;
-    ssl_certificate_key tecent-ssl/gonelist.cugxuan.cn/Nginx/2_gonelist.cugxuan.cn.key;
-    ssl_session_timeout 5m;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#按照这个套件配置
-    ssl_prefer_server_ciphers on;
-
-    location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://gonelist_pool;
-    }
-}
-```
