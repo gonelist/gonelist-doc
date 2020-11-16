@@ -160,7 +160,7 @@
 
 ## 全局搜索功能
 
-- GET `/onedrive/search`
+- GET `/onedrive/search?key=xxx`
   输入关键字进行搜索
 
 如果没有找到，则返回 data 空数组
