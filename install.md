@@ -32,7 +32,7 @@ $ tar -zxf gonelist_linux_amd64.tar.gz && cd gonelist_linux_amd64/
 
 ## 注册应用程序
 
-打开 [注册应用程序](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) 的链接，登陆后选择「注册应用程序」，输入「名称」，选择「任何组织目录中的账户和个人」（**注意这里不要看位置选择而是看文字，部分人可能是中间那个选项，不要选成单一租户或者其他选项，否则会导致登陆时出现问题**），输入重定向 URL 为 `http://localhost:8000/auth`，「注册」即可
+打开 [注册应用程序](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) 的链接 ( 世纪互联版的[点击这里](https://portal.azure.cn/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) )，登陆后选择「注册应用程序」，输入「名称」，选择「任何组织目录中的账户和个人」（**注意这里不要看位置选择而是看文字，部分人可能是中间那个选项，不要选成单一租户或者其他选项，否则会导致登陆时出现问题**），输入重定向 URL 为 `http://localhost:8000/auth`，「注册」即可
 
 ![register-app](./img/install/register-app.png)
 
