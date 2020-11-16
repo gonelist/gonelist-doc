@@ -158,6 +158,36 @@
 
 否则会重定向到下载链接
 
+## 全局搜索功能
+
+- GET `/onedrive/search`
+  输入关键字进行搜索
+
+如果没有找到，则返回 data 空数组
+
+```
+{
+    "code": 200,
+    "msg": "ok",
+    "data": [
+        "/public/exampleType/test.password-123456",
+        "/public/exampleType/test-pass",
+        "/public/exampleType/test-pass/test-second",
+        "/public/exampleType/test"
+    ]
+}
+```
+
+如果内部索引为空或者出错，返回
+
+```
+{
+  "code": 10002,
+  "msg": "未找到对应项目",
+  "data": ""
+}
+```
+
 # 密码验证
 
 如果使用接口获取的文件夹设置了密码，通过 header 里面 pass 来传值，访问格式如下
