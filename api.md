@@ -170,10 +170,10 @@
     "code": 200,
     "msg": "ok",
     "data": [
-        "/public/exampleType/test.password-123456",
-        "/public/exampleType/test-pass",
-        "/public/exampleType/test-pass/test-second",
-        "/public/exampleType/test"
+        "/exampleType/test-pass/test-second",
+        "/exampleType/test.password-123456",
+        "/exampleType/test-pass",
+        "/exampleType/test"
     ]
 }
 ```
