@@ -10,6 +10,7 @@
 - 其他说明
   - [常见问题](question)
   - [目标愿景](goal)
+  - [大事记](events)
   - [致谢](thank)
 - 开发文档
   - [api](api)

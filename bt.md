@@ -56,3 +56,17 @@ $ systemctl status gonelist
 
 应用也可以在宝塔中停止
 ![stop](./img/bt/stop.png)
+
+## 伪静态
+
+可以通过二级域名进行访问
+![伪静态](./img/bt/伪静态.png)
+```
+location /
+{
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://127.0.0.1:8000;
+
+}
+```
