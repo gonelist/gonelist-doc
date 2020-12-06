@@ -170,10 +170,22 @@
     "code": 200,
     "msg": "ok",
     "data": [
-        "/exampleType/test-pass/test-second",
-        "/exampleType/test.password-123456",
-        "/exampleType/test-pass",
-        "/exampleType/test"
+        {
+            "path": "/exampleType/test",
+            "is_folder": true
+        },
+        {
+            "path": "/exampleType/test-pass",
+            "is_folder": true
+        },
+        {
+            "path": "/exampleType/test.password-123456",
+            "is_folder": true
+        },
+        {
+            "path": "/exampleType/test-pass/test-second",
+            "is_folder": true
+        }
     ]
 }
 ```

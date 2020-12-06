@@ -6,6 +6,7 @@
 - 配置介绍
   - [目录加密](pass)
   - [README 页面](myreadme)
+  - [搜索功能](search)
   - [多用户](multi-account)
 - 其他说明
   - [常见问题](question)
