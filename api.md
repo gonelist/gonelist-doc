@@ -192,7 +192,7 @@
 
 如果内部索引为空或者出错，返回
 
-```
+```json
 {
   "code": 10002,
   "msg": "未找到对应项目",
@@ -217,5 +217,27 @@ pass: 123456
   "code": 10007,
   "msg": "输入密码错误",
   "data": "输入密码错误"
+}
+```
+
+# 版本信息
+
+- GET `/info` 获取版本信息
+- 返回 `name`：网页左上角的名称
+- 返回 `page_title`：标签页名称
+- 返回 `upload`：是否显示上传按钮
+- 返回 `version`：使用 GONEList 版本
+
+
+```json
+{
+  "code": 200,
+  "msg": "ok",
+  "data": {
+    "name": "GONEList",
+    "page_title": "GONEList",
+    "upload": false,
+    "version": "v0.5.4"
+  }
 }
 ```
